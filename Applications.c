@@ -20,6 +20,7 @@
 #include "HwPWM.h"
 #include "SPI.h"
 #include "UART.h"
+#include "LCD.h"
 
 /*- LOCAL MACROS -------------------------------------------*/
 
@@ -56,32 +57,27 @@ uint8_t flag = 0;
 
 int main(void)
 {
-	SPI_ConfigType configType =
+	sint32_t var = 0;
+
+	UART_ConfigType configType =
 	{
-			SPI_MASTER,
-			SPI_INTERRUPT_DISABLED,
-			SPI_F_OSC_4
+			UART_ASYNCHRONOUS_MODE,
+			UART_SENDER_MODE,
+			UART_EIGHT_BITS,
+			UART_PARITY_DISABLED,
+			UART_ONE_STOP_BIT,
+			UART_INTERRUPT_DISABLED
 	};
 
-	gpioPinDirection(GPIOA, BIT0, INPUT);
+	softwareDelayMs(200);
 
-//	softwareDelayMs(200);
-
-	SPI_init(&configType);
+	UART_init(&configType);
 
 	while(1)
 	{
-		softwareDelayMs(10);
-		if(PORTA_PIN & (1 << 0))
-		{
-			SPI_sendByte(1);
-		}else
-		{
-			SPI_sendByte(0);
-		}
+		softwareDelayMs(1000);
+		UART_transmit(var++);
 	}
-
-
 
 //	UART_ConfigType configtype = {
 //			UART_ASYNCHRONOUS_MODE,

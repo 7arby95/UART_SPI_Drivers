@@ -6,6 +6,7 @@
 C_SRCS += \
 ../Applications.c \
 ../HwPWM.c \
+../LCD.c \
 ../SPI.c \
 ../SwICU.c \
 ../UART.c \
@@ -20,6 +21,7 @@ C_SRCS += \
 OBJS += \
 ./Applications.o \
 ./HwPWM.o \
+./LCD.o \
 ./SPI.o \
 ./SwICU.o \
 ./UART.o \
@@ -34,6 +36,7 @@ OBJS += \
 C_DEPS += \
 ./Applications.d \
 ./HwPWM.d \
+./LCD.d \
 ./SPI.d \
 ./SwICU.d \
 ./UART.d \
